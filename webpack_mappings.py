@@ -1,12 +1,18 @@
 import json, os, sys, uuid
 
+if len(sys.argv) < 3:
+    print("Usage: python webpack_mappings.py <css_mappings.json> <webpack.json> [--latest]")
+
 option_latest = "--latest" in sys.argv
 
-with open("css_mappings.json") as fp:
+with open(sys.argv[1]) as fp:
     mappings = json.load(fp)
 
-with open("webpack.json") as fp:
+with open(sys.argv[2], encoding="UTF-8") as fp:
     webpack = json.load(fp)
+
+with open("ignore.json") as fp:
+    ignore = json.load(fp)
 
 webpack_length = len(webpack)
 duplicate_webpack = []
@@ -27,6 +33,9 @@ edited_count = 0
 added_dict = {}
 
 for x in webpack:
+    if x in ignore or webpack[x][0] in ignore:
+        continue
+    
     success = False
 
     # Pass 1
@@ -72,10 +81,10 @@ for x in webpack:
 print(f"Added {added_count}, skipped {skipped_count}, edited {edited_count}")
 
 if (added_count > 0):
-    print("New translations for your consideration: css_mappings_new.json")
+    print("New translations for your consideration: " + sys.argv[1] + ".new")
 
-    with open("css_mappings_new.json", 'w') as fp:
-        json.dump(added_dict, fp)
+    with open(sys.argv[1] + ".new", 'w') as fp:
+        json.dump(added_dict, fp, indent=4)
 
-with open("css_mappings_edited.json", 'w') as fp:
-    json.dump(mappings, fp)
+with open(sys.argv[1], 'w') as fp:
+    json.dump(mappings, fp, indent=4)

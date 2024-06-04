@@ -20,7 +20,25 @@ Internal css mappings to translate css from older Steam clients to new ones
 ### Updating translations (Webpack)
 
 ```js
-const mappings = DFL.classMap.reduce((acc, cur) => {
+// There are three localization classes, ranging from 1000-8000 keys of UI strings
+const withoutLocalizationClasses = DFL.classMap.filter((module) => Object.keys(module).length < 1000)
+
+const allClasses = withoutLocalizationClasses.map((module) => {
+    let filteredModule = {}
+    Object.entries(module).forEach(([propertyName, value]) => {
+      // Filter out things that start with a number (eg: Breakpoints like 800px)
+      // I have confirmed the new classes don't start with numbers
+      if (isNaN(value.charAt(0))) {
+        filteredModule[propertyName] = value;
+      }
+    })
+    return filteredModule;
+}).filter((module) => {
+    // Some modules will be empty after the filtering, remove those
+    return Object.keys(module).length > 0;
+});
+
+const mappings = allClasses.reduce((acc, cur) => {
     Object.entries(cur).forEach(([property, value]) => {
         if (acc[property]) {
             acc[property].push(value)
