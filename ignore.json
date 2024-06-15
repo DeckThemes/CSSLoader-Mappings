@@ -4,5 +4,7 @@
     "SVGIcon_Button",
     "ingame",
     "disabled",
-    "avatar"
+    "avatar",
+    "SVGIcon_Information",
+    "AvatarAndUser"
 ]
