@@ -6,5 +6,12 @@
     "disabled",
     "avatar",
     "SVGIcon_Information",
-    "AvatarAndUser"
+    "AvatarAndUser",
+    "Download",
+    "Update",
+    "Pause",
+    "BorrowApp",
+    "Stop",
+    "Cancel",
+    "Install"
 ]

@@ -6990,7 +6990,6 @@
         "xp7A-08Y404Of3FBHqX32"
     ],
     "bd69db96-cf66-4f0b-af50-d68844b227b1": [
-        "Update",
         "appportrait_Update_2PhYb",
         "appportrait_Update_",
         "appportrait_Update",
@@ -28732,7 +28731,6 @@
         "B0KOfNkg7hq7nxHumDWOJ"
     ],
     "d328ad1f-8f21-4dbf-9dc3-7b6294f50cde": [
-        "Stop",
         "serverbrowserdialog_Stop_3k3ZJ",
         "serverbrowserdialog_Stop_",
         "serverbrowserdialog_Stop",
@@ -42395,19 +42393,17 @@
         "_1sdvoquNUMKb-NNY0a_gjX"
     ],
     "1778123d-60c4-4441-b5b6-e801ae8b26ea": [
-        "appdetailsplaysection_StatusAndStats_1YbtI",
         "StatusAndStats",
-        "Cancel",
-        "C",
-        "",
+        "appdetailsplaysection_StatusAndStats_1YbtI",
+        "appdetailsplaysection_StatusAndStats_",
+        "appdetailsplaysection_StatusAndStats",
         "_1YbtIWcfkQJOysLXQbwzRf"
     ],
     "bb2f16cf-4017-44d9-b6be-a72ca180887f": [
-        "appdetailsplaysection_PermanentlyUnavailable_3CYvy",
         "PermanentlyUnavailable",
-        "BorrowApp",
-        "Borr",
-        "Bor",
+        "appdetailsplaysection_PermanentlyUnavailable_3CYvy",
+        "appdetailsplaysection_PermanentlyUnavailable_",
+        "appdetailsplaysection_PermanentlyUnavailable",
         "_3CYvy-LZ_Y81QV0QU3lj1c"
     ],
     "1dd05683-7212-4423-b88d-ad6f9c70b7d5": [
@@ -42424,10 +42420,8 @@
     ],
     "768ad1f6-11e3-4643-96fb-d42527772464": [
         "appdetailsplaysection_StatusNameContainer_zjtAI",
-        "StatusNameContainer",
-        "Pause",
-        "",
-        "",
+        "appdetailsplaysection_StatusNameContainer_",
+        "appdetailsplaysection_StatusNameContainer",
         "zjtAIAWI6HE0oCtJzw6Qt"
     ],
     "69b044a7-6b9c-4110-9c62-fe454df2daec": [
@@ -44468,7 +44462,6 @@
         "_2lnv61nvDJ1QaIUATpSvAI"
     ],
     "e950671f-b177-4724-90b9-b78415e1266b": [
-        "Install",
         "appproperties_Install_2nXS1",
         "appproperties_Install_",
         "appproperties_Install",
@@ -51430,7 +51423,6 @@
         "_1_Bo2Ied5s2Od4YKYTOsau"
     ],
     "df850cbb-3ea4-4c6d-90ee-cfc5e7447d9c": [
-        "Download",
         "appportrait_Download_3yGiL",
         "appportrait_Download_",
         "appportrait_Download",
