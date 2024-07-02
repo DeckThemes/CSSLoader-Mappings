@@ -13,5 +13,6 @@
     "BorrowApp",
     "Stop",
     "Cancel",
-    "Install"
+    "Install",
+    "SettingsDialogSubHeader"
 ]
