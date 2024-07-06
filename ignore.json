@@ -14,5 +14,6 @@
     "Stop",
     "Cancel",
     "Install",
-    "SettingsDialogSubHeader"
+    "SettingsDialogSubHeader",
+    "AddFriendButton"
 ]
