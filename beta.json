@@ -2788,11 +2788,13 @@
         "_24Kq0c3p4ZFuy_ZJpi4-Mv"
     ],
     "3582_Inputs": [
-        "controllerconfiguratorvirtualmenus_Inputs_",
-        "controllerconfiguratorvirtualmenus_Inputs",
+        "controllerconfiguratorvirtualmenus_Inputs_3Ad-h",
+        "Inputs",
         "UltraNarrowRightPanel",
         "UltraNarrowRight",
         "UltraNarrowRigh",
+        "controllerconfiguratorvirtualmenus_Inputs_",
+        "controllerconfiguratorvirtualmenus_Inputs",
         "_3Ad-hidSeLx_q2c9YL4rqR"
     ],
     "3582_Input": [
@@ -30709,6 +30711,10 @@
         "VvmezTYirFirO4y0SV4mP"
     ],
     "44123_CardinalButtonGroup": [
+        "LeftHandSideStickPress",
+        "controllerconfiguratorgyrobuttonpicker_LeftHandSideStickPress_1fRfj",
+        "controllerconfiguratorgyrobuttonpicker_LeftHandSideStickPress_",
+        "controllerconfiguratorgyrobuttonpicker_LeftHandSideStickPress",
         "LeftHandButtonDPadUp",
         "controllerconfiguratorgyrobuttonpicker_LeftHandButtonDPadUp_ZeN1l",
         "controllerconfiguratorgyrobuttonpicker_LeftHandButtonDPadUp_",
@@ -30735,12 +30741,14 @@
         "Z53px63Qv9SetSlqDH9c"
     ],
     "44123_ButtonActive": [
-        "controllerconfiguratorgyrobuttonpicker_ButtonActive_",
-        "controllerconfiguratorgyrobuttonpicker_ButtonActive",
+        "controllerconfiguratorgyrobuttonpicker_ButtonActive_2NnqD",
+        "ButtonWest",
         "ButtonActive",
         "controllerconfiguratorgyrobuttonpicker_ButtonWest_ekzkL",
         "controllerconfiguratorgyrobuttonpicker_ButtonWest_",
         "controllerconfiguratorgyrobuttonpicker_ButtonWest",
+        "controllerconfiguratorgyrobuttonpicker_ButtonActive_",
+        "controllerconfiguratorgyrobuttonpicker_ButtonActive",
         "_2NnqDW3H-o55EGadCYsZjZ"
     ],
     "44123_Glyph": [
@@ -42315,10 +42323,13 @@
         "_2B2IARnwWycXE95juDaZe5"
     ],
     "62669_UpdateScreen": [
+        "MainMenuAppRunning",
+        "mainmenuapprunning_MainMenuAppRunning_1wiEs",
+        "mainmenuapprunning_MainMenuAppRunning_",
+        "mainmenuapprunning_MainMenuAppRunning",
         "updaterfield_UpdateScreen_22w6r",
         "updaterfield_UpdateScreen_",
         "updaterfield_UpdateScreen",
-        "mainmenuapprunning_MainMenuAppRunning",
         "_22w6r9mmI13pGeTVVmbOfG"
     ],
     "62669_UpdatePanel": [
@@ -42346,6 +42357,9 @@
         "_20Za7kKHvAG5rTZCZBMrn"
     ],
     "62669_TimeRemaining": [
+        "mainmenuapprunning_NavigationBox_36vNU",
+        "mainmenuapprunning_NavigationBox_",
+        "mainmenuapprunning_NavigationBox",
         "updaterfield_TimeRemaining_2W9zi",
         "updaterfield_TimeRemaining_",
         "updaterfield_TimeRemaining",
@@ -42377,19 +42391,26 @@
         "_8OvE2alIrRGGVk3GTtHep"
     ],
     "62669_UpdaterFieldStatusSuccess": [
-        "updaterfield_UpdaterFieldStatusSuccess_",
-        "updaterfield_UpdaterFieldStatusSuccess",
+        "updaterfield_UpdaterFieldStatusSuccess_3tcbq",
+        "UpdaterFieldStatusSuccess",
         "mainmenuapprunning_ActiveDot_13YbV",
         "mainmenuapprunning_ActiveDot_",
         "mainmenuapprunning_ActiveDot",
+        "updaterfield_UpdaterFieldStatusSuccess_",
+        "updaterfield_UpdaterFieldStatusSuccess",
         "_3tcbqmOegUl4_xy6HIX6aL"
     ],
     "62669_UpdaterFieldStatusApplying": [
         "updaterfield_UpdaterFieldStatusApplying_Y36on",
-        "updaterfield_UpdaterFieldStatusApplying_",
-        "updaterfield_UpdaterFieldStatusApplying",
+        "UpdaterFieldStatusApplying",
+        "mainmenuapprunning_NavigationMenuItemSeparator_l7dF3",
         "mainmenuapprunning_NavigationMenuItemSeparator_",
         "mainmenuapprunning_NavigationMenuItemSeparator",
+        "mainmenuapprunning_AppColumnContent_2P4E7",
+        "mainmenuapprunning_AppColumnContent_",
+        "mainmenuapprunning_AppColumnContent",
+        "updaterfield_UpdaterFieldStatusApplying_",
+        "updaterfield_UpdaterFieldStatusApplying",
         "Y36on_okii3CIwea3_ojO"
     ],
     "62669_TextContainer": [
@@ -42406,11 +42427,13 @@
         "PHNS8MYXu4gl3AanNLOiN"
     ],
     "62669_UpdateBytesRemaining": [
-        "updaterfield_UpdateBytesRemaining_",
-        "updaterfield_UpdateBytesRemaining",
+        "updaterfield_UpdateBytesRemaining_byOA3",
+        "UpdateBytesRemaining",
         "mainmenuapprunning_ActiveContent_3cU2E",
         "mainmenuapprunning_ActiveContent_",
         "mainmenuapprunning_ActiveContent",
+        "updaterfield_UpdateBytesRemaining_",
+        "updaterfield_UpdateBytesRemaining",
         "byOA3WckKT_XDWYkAmgJS"
     ],
     "62669_Label": [
@@ -42439,6 +42462,9 @@
         "ntEQ0knbZ1fjpiLRoXzqQ"
     ],
     "62669_PatchNotes": [
+        "mainmenuapprunning_OverlayGuides_bqMkR",
+        "mainmenuapprunning_OverlayGuides_",
+        "mainmenuapprunning_OverlayGuides",
         "updaterfield_PatchNotes_Evi7g",
         "updaterfield_PatchNotes_",
         "updaterfield_PatchNotes",
@@ -42476,11 +42502,13 @@
         "_3GTqXLWMOjBf3kJ6K2859u"
     ],
     "62669_UnsupportedHardwareWarning": [
-        "updaterfield_UnsupportedHardwareWarning_",
-        "updaterfield_UnsupportedHardwareWarning",
+        "updaterfield_UnsupportedHardwareWarning_2SLEt",
+        "UnsupportedHardwareWarning",
         "mainmenuapprunning_OverlayNotes_3UmDR",
         "mainmenuapprunning_OverlayNotes_",
         "mainmenuapprunning_OverlayNotes",
+        "updaterfield_UnsupportedHardwareWarning_",
+        "updaterfield_UnsupportedHardwareWarning",
         "_2SLEtyORnYRs51HswrIRGd"
     ],
     "62669_Title": [
@@ -59657,6 +59685,9 @@
         "_1aY-rmUi48QSw7U1ZWa5DZ"
     ],
     "86703_KeyboardKey": [
+        "virtualkeyboard_KeyboardKey_2KhPX",
+        "virtualkeyboard_KeyboardKey_",
+        "virtualkeyboard_KeyboardKey",
         "KeyTheme_Enter",
         "KeyTheme_",
         "KeyTheme",

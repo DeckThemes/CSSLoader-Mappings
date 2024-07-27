@@ -92,10 +92,11 @@ for x in data:
     has_match = False
 
     for y in items[::-1]:
+
         if has_match:
             break
 
-        for module in modules:
+        for module in [z for z in modules if z.valid]:
             match = module.match_value(y)
 
             if match is None:
@@ -105,8 +106,10 @@ for x in data:
             i = 0
 
             for item in items_to_add:
+                while str(i) in match:
+                    i += 1
+
                 match[str(i)] = item
-                i += 1
 
             has_match = True
             break
