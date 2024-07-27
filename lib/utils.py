@@ -1,0 +1,2 @@
+BASE_WEBPACK_PATH = "./webpack"
+MATCH_LIMIT = 0.8
