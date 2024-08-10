@@ -1800,6 +1800,13 @@
         "K-lPMiafCuZRqjfXykujt",
         "Aupswi7-c-w3XwNO5cp2i"
     ],
+    "2333_disabled": [
+        "chatentry_disabled_2GM2k",
+        "chatentry_disabled_",
+        "chatentry_disabled",
+        "_2GM2kkVRqL-SdkG4oQjUzY",
+        "jaQN2IyN4P8LZXJ6P11qy"
+    ],
     "2333_Inactive": [
         "chatentry_Inactive_34suB",
         "chatentry_Inactive_",
@@ -3098,6 +3105,13 @@
         "chatroomgroupsettings_Avatar",
         "_1LHfzcokoxGlmETGMPRkYP",
         "_2TJPfQdxYFN81vJw-YW9ok"
+    ],
+    "4486_AvatarAndUser": [
+        "chatroomgroupsettings_AvatarAndUser_3fC6e",
+        "chatroomgroupsettings_AvatarAndUser_",
+        "chatroomgroupsettings_AvatarAndUser",
+        "_3fC6eKGc6Sr_gO9y6-PDLG",
+        "_3-e9k12ttwoC0nGNdXyJeV"
     ],
     "4486_NoIconLabel": [
         "NoIconLabel",
@@ -10442,6 +10456,12 @@
         "appproperties_TriangleDown_",
         "appproperties_TriangleDown",
         "_2lnv61nvDJ1QaIUATpSvAI"
+    ],
+    "13532_Install": [
+        "appproperties_Install_2nXS1",
+        "appproperties_Install_",
+        "appproperties_Install",
+        "_2nXS1OQvhODwzoAc75AEKR"
     ],
     "13532_Name": [
         "appproperties_Name_bP2Ip",
@@ -18553,6 +18573,12 @@
         "playersdialog_Blocked",
         "_1T0DLB9syB7_oU6GXuNbv2"
     ],
+    "25392_AddFriendButton": [
+        "playersdialog_AddFriendButton_2Dz7_",
+        "playersdialog_AddFriendButton_",
+        "playersdialog_AddFriendButton",
+        "_2Dz7_wdqfJvQIcXt7Gy-XG"
+    ],
     "25392_PlayersList": [
         "playersdialog_PlayersList_1pbQV",
         "playersdialog_PlayersList_",
@@ -18729,6 +18755,12 @@
         "settings_SettingsDialogFatButton_",
         "settings_SettingsDialogFatButton",
         "UqEiVDhZ47cn3vWxM7cR0"
+    ],
+    "25416_SettingsDialogSubHeader": [
+        "settings_SettingsDialogSubHeader_2rK4Y",
+        "settings_SettingsDialogSubHeader_",
+        "settings_SettingsDialogSubHeader",
+        "_2rK4YqGvSzXLj1bPZL8xMJ"
     ],
     "25416_SettingsDialogBodyText": [
         "SettingsDialogBodyText",
@@ -27922,6 +27954,13 @@
         "_1l8mFRMOzc3FeTSZuQcZBR",
         "A0XYrZMFUpzFpMU7qBrhJ"
     ],
+    "38226_ingame": [
+        "miniprofile_ingame_zfceJ",
+        "miniprofile_ingame_",
+        "miniprofile_ingame",
+        "zfceJhuXao-36EvDJEHKB",
+        "_24oQzlBma4VdZUDiSBaYFA"
+    ],
     "38226_richPresence": [
         "richPresence",
         "miniprofile_richPresence_2Ues_",
@@ -34714,12 +34753,26 @@
         "_3R8sz8_FZ9ZzZiDD_gTV",
         "_15W8pwbYThdmtBNIIwvO91"
     ],
+    "49233_avatarHolder": [
+        "steamavatar_avatarHolder_1YGAH",
+        "steamavatar_avatarHolder_",
+        "steamavatar_avatarHolder",
+        "_1YGAHSfGavQI6MODJq-pJB",
+        "nibodjvvrm86uCfnnAn4g"
+    ],
     "49233_avatarStatus": [
         "steamavatar_avatarStatus_1yIzy",
         "steamavatar_avatarStatus_",
         "steamavatar_avatarStatus",
         "_1yIzy56YfJIliF6ykwhP2r",
         "_3xUpb5DWXPFNcHHIcv-9pe"
+    ],
+    "49233_avatar": [
+        "steamavatar_avatar_1p_Qr",
+        "steamavatar_avatar_",
+        "steamavatar_avatar",
+        "_1p_QrI3ixF-RAwnxad9pEm",
+        "_3h-QRJGxnVOIExtHD1R0f2"
     ],
     "49233_avatarFrame": [
         "avatarFrame",
@@ -51132,6 +51185,18 @@
         "appportrait_Play",
         "_1_Bo2Ied5s2Od4YKYTOsau"
     ],
+    "77729_Download": [
+        "appportrait_Download_3yGiL",
+        "appportrait_Download_",
+        "appportrait_Download",
+        "_3yGiLsl__NlNYprnB7rt14"
+    ],
+    "77729_Update": [
+        "appportrait_Update_2PhYb",
+        "appportrait_Update_",
+        "appportrait_Update",
+        "_2PhYbL3_EgtG5edPuoTVtq"
+    ],
     "77729_BasicPlayButton": [
         "BasicPlayButton",
         "appportrait_BasicPlayButton_1K9_h",
@@ -51145,6 +51210,12 @@
         "appportrait_LockedGame_",
         "appportrait_LockedGame",
         "_2mDBhx6RW__a_uRpmFziSW"
+    ],
+    "77729_SVGIcon_Button": [
+        "appportrait_SVGIcon_Button_rqQs9",
+        "appportrait_SVGIcon_Button_",
+        "appportrait_SVGIcon_Button",
+        "rqQs9zwDWXt98QVcNCsze"
     ],
     "77729_PressActive": [
         "PressActive",
@@ -57051,6 +57122,13 @@
         "bKyXtwB0axV5V62lPP6Ft",
         "_3SdBcnCBApw0fQ886qgsUx"
     ],
+    "82051_bottom": [
+        "linkregionbox_bottom__wmyV",
+        "linkregionbox_bottom_",
+        "linkregionbox_bottom",
+        "_wmyVys3fhLnGyLc088GB",
+        "_2kzZ9Ilwo92sEI9LXTtZjN"
+    ],
     "82051_bottomright": [
         "bottomright",
         "linkregionbox_bottomright_2SGw-",
@@ -57804,6 +57882,12 @@
         "serverbrowserdialog_SearchActive_",
         "serverbrowserdialog_SearchActive",
         "B0KOfNkg7hq7nxHumDWOJ"
+    ],
+    "84204_Stop": [
+        "serverbrowserdialog_Stop_3k3ZJ",
+        "serverbrowserdialog_Stop_",
+        "serverbrowserdialog_Stop",
+        "_3k3ZJ5nBY_vPiH5o0RYbJW"
     ],
     "84204_Spinner": [
         "serverbrowserdialog_Spinner_2Lckf",
@@ -62090,6 +62174,13 @@
         "cloudfileuploadprogress_FileUploadCancel",
         "_2MPbUvUK6kHP88NzQ_8hT9",
         "rFDt7lDfNBv3BUjppBm9i"
+    ],
+    "93305_SVGIcon_X_Line": [
+        "cloudfileuploadprogress_SVGIcon_X_Line_3ad65",
+        "cloudfileuploadprogress_SVGIcon_X_Line_",
+        "cloudfileuploadprogress_SVGIcon_X_Line",
+        "_3ad65vz1XLF30QtU8LM8iz",
+        "_1H7hrp21ukrcZyCAzv9Oc1"
     ],
     "93305_FileUploadBtn": [
         "FileUploadBtn",

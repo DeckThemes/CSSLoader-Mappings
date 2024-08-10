@@ -10,7 +10,7 @@ class Version:
         self.type = split[1]
     
     def load(self) -> Webpack:
-        with open(os.path.join(BASE_WEBPACK_PATH, self.filename), 'r') as fp:
+        with open(os.path.join(BASE_WEBPACK_PATH, self.filename), 'r', encoding="utf-8") as fp:
             return Webpack(json.load(fp))
         
     def __str__(self) -> str:

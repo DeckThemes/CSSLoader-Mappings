@@ -27,6 +27,7 @@ class ModuleMapping:
         self.raw = data
         self.mappings : dict[str, dict[str, str]] = {}
         self.valid = True
+        self.ignore_webpack_name = []
         self.generate()
 
     def generate(self):
@@ -38,10 +39,10 @@ class ModuleMapping:
             return
 
         ids_to_not_map = [x for x in first_webpack_module.mappings if filter_single(x, first_webpack_module.mappings[x])]
-        
+
         for x in ignore:
             if x in first_webpack_module.mappings:
-                ids_to_not_map.append(x)
+                self.ignore_webpack_name.append(x)
 
         if len(ids_to_not_map) == len(first_webpack_module.mappings):
             self.valid = False
@@ -75,7 +76,8 @@ class ModuleMapping:
         return {
             "name": None,
             "ids": self.raw,
-            "classname_mappings": self.mappings
+            "classname_mappings": self.mappings,
+            "ignore_webpack_keys": self.ignore_webpack_name
         }
 
 
