@@ -89,8 +89,8 @@ modules = [ModuleMapping(data[x], x) for x in data]
 with open("./beta.orig.json", "r") as fp:
     data = json.load(fp)
 
-for x in data:
-    items = data[x]
+for i, (k, v) in enumerate(data.items()):
+    items = v
     has_match = False
 
     for y in items[::-1]:

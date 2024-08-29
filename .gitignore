@@ -5,3 +5,5 @@ webpack_id_mappings.json
 lib/__pycache__
 classname_mappings.json
 webpack_id_mappings.json
+beta.json
+stable.json
