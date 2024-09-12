@@ -14,11 +14,13 @@ def generate(data : dict, version : int):
             if key not in final:
                 final[key] = []
 
-            for i, (k, v) in enumerate(module["classname_mappings"][classname_id].items()):
+            items = sorted(module["classname_mappings"][classname_id].items(), key=lambda x: int(x[0]))
+
+            for i, (k, v) in enumerate(items):
                 if v not in final[key] and int(k) <= version:
                     final[key].append(v)
 
-            for i, (k, v) in enumerate(module["classname_mappings"][classname_id].items()):
+            for i, (k, v) in enumerate(items):
                 if v not in final[key]:
                     final[key].insert(len(final[key]) - 1, v)
 
