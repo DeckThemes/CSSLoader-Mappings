@@ -4,6 +4,7 @@ with open("./classname_mappings.json", 'r') as fp:
     data = json.load(fp)
 
 def generate(data : dict, version : int):
+    print(f"Generating for version {version}")
     final = {}
 
     for module_id in data["module_mappings"]:
@@ -26,11 +27,11 @@ def generate(data : dict, version : int):
 
     return final
 
-last_beta = [x[0] for x in data["versions"].items() if x[1] == "beta"][-1]
-last_stable = [x[0] for x in data["versions"].items() if x[1] == "stable"][-1]
+last_beta = sorted([int(x[0]) for x in data["versions"].items() if x[1] == "beta"])[-1]
+last_stable = sorted([int(x[0]) for x in data["versions"].items() if x[1] == "stable"])[-1]
 
-beta = generate(data, int(last_beta))
-stable = generate(data, int(last_stable))
+beta = generate(data, last_beta)
+stable = generate(data, last_stable)
 
 with open("./beta.json", 'w') as fp:
     json.dump(beta, fp)
