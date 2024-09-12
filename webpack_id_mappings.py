@@ -105,7 +105,8 @@ def add_all_new_mappings(mappings : list[Mapping], data : dict):
     for mapping in mappings:
         for new in mapping.new:
             if new.dst in data:
-                raise Exception("!!!")
+                data[new.dst][mapping.new_version.timestamp] = new.dst
+                continue
             
             data[new.dst] = {
                 mapping.new_version.timestamp: new.dst
