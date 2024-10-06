@@ -101,9 +101,24 @@ def generate(base : Version, new : Version) -> Mapping:
 
 # Map stable -> beta, then chain beta -> beta and stable -> stable
 
-def add_all_new_mappings(mappings : list[Mapping], data : dict):
+def add_all_new_mappings(mappings : list[Mapping], data : dict, check_if_new_exists : bool = False):
+    translations = {}
+
+    if check_if_new_exists:
+        for x in data:
+            for y in data[x]:
+                if data[x][y] in translations and translations[data[x][y]] != x:
+                    raise Exception("ID conflict!!")
+                
+                translations[data[x][y]] = x
+
     for mapping in mappings:
         for new in mapping.new:
+            if check_if_new_exists and new.dst in translations:
+                print(f"[Warn] Existing module found in version {mapping.new_version.timestamp} that is marked as new: {new.dst}")
+                data[translations[new.dst]][mapping.new_version.timestamp] = new.dst
+                continue
+
             if new.dst in data:
                 data[new.dst][mapping.new_version.timestamp] = new.dst
                 continue
@@ -152,12 +167,16 @@ if __name__ == "__main__":
     stable_chain = [generate(stable[idx], stable[idx + 1]) for idx, x in enumerate(stable[:-1])]
     beta_chain = [generate(first_stable, first_beta)] + [generate(beta[idx], beta[idx + 1]) for idx, x in enumerate(beta[:-1])]
 
-    add_all_new_mappings(stable_chain, all)
     add_all_new_mappings(beta_chain, all)
 
     for id in all:
-        add_all_existing_mappings(stable_chain, all, id)
         add_all_existing_mappings(beta_chain, all, id)
+
+    add_all_new_mappings(stable_chain, all, True)
+
+    for id in all:
+        add_all_existing_mappings(stable_chain, all, id)
+        
     
     with open("./webpack_id_mappings.json", 'w') as fp:
         json.dump(all, fp)

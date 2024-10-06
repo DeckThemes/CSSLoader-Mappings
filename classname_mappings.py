@@ -73,10 +73,22 @@ class ModuleMapping:
         for x in self.mappings:
             self.mappings[x] = dict(sorted(self.mappings[x].items(), key= lambda x: int(x[0])))
 
+        flattened_mappings : dict[str, dict[str, str]] = {}
+
+        for _, (name, version_translations) in enumerate(self.mappings.items()):
+            translations : dict[str, str] = {}
+            keys : list[str] = []
+            for _, (steam_version, translation) in enumerate(version_translations.items()):
+                if translation not in keys:
+                    keys.append(translation)
+                    translations[steam_version] = translation
+            
+            flattened_mappings[name] = translations
+
         return {
             "name": None,
             "ids": self.raw,
-            "classname_mappings": self.mappings,
+            "classname_mappings": flattened_mappings,
             "ignore_webpack_keys": self.ignore_webpack_name
         }
 
