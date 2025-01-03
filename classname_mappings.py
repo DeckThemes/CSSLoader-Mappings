@@ -2,6 +2,7 @@ from lib.version import Version
 from lib.webpack import Webpack
 import os
 import json
+import datetime
 
 base_path = "./webpack"
 versions : dict[Version, Webpack] = {}
@@ -141,4 +142,4 @@ for x in versions:
     versions_dict[x.timestamp] = x.type
 
 with open("classname_mappings.json", 'w') as fp:
-    json.dump({"versions": versions_dict, "module_mappings": final}, fp)
+    json.dump({"versions": versions_dict, "module_mappings": final, "generated": datetime.datetime.now(datetime.timezone.utc).isoformat()}, fp)
