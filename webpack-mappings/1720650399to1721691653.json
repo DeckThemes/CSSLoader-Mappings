@@ -1,10 +1,6 @@
 {
     "new": [
         {
-            "new": "12103",
-            "possible_mappings": {}
-        },
-        {
             "new": "34983",
             "possible_mappings": {}
         },
@@ -24,6 +20,12 @@
     "mapped": {
         "90246": {
             "new": "26105",
+            "possible_mappings": {
+                "__manually_added": 1.0
+            }
+        },
+        "1448": {
+            "new": "12103",
             "possible_mappings": {
                 "__manually_added": 1.0
             }
