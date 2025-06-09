@@ -1,4 +1,4 @@
-import os, json
+import os, json, hashlib, base64
 
 from lib.mapping_diff import MappingDiff
 from lib.version import Version
@@ -40,8 +40,10 @@ class MappingEntry:
 
 class Mapping:
     def __init__(self, base : Version, new : Version):
+        self.is_beta = new.type.lower() == "beta" 
         self.base_version = base
         self.new_version = new
+        self.base_ids = base.load().ids # TODO: Pull this from somewhere else
         self.new_ids = new.load().ids # TODO: Pull this from somewhere else
 
     def from_file(self, filename : str):
@@ -99,87 +101,100 @@ def generate(base : Version, new : Version) -> Mapping:
     mapping.to_file(filename)
     return mapping
 
-# Map stable -> beta, then chain beta -> beta and stable -> stable
-
-def add_all_new_mappings(mappings : list[Mapping], data : dict, check_if_new_exists : bool = False):
-    translations = {}
-
-    if check_if_new_exists:
-        for x in data:
-            for y in data[x]:
-                if data[x][y] in translations and translations[data[x][y]] != x:
-                    raise Exception("ID conflict!!")
-                
-                translations[data[x][y]] = x
-
-    for mapping in mappings:
-        for new in mapping.new:
-            if check_if_new_exists and new.dst in translations:
-                print(f"[Warn] Existing module found in version {mapping.new_version.timestamp} that is marked as new: {new.dst}")
-                data[translations[new.dst]][mapping.new_version.timestamp] = new.dst
-                continue
-
-            if new.dst in data:
-                data[new.dst][mapping.new_version.timestamp] = new.dst
-                continue
-            
-            data[new.dst] = {
-                mapping.new_version.timestamp: new.dst
-            }
-
-def add_all_existing_mappings(mappings : list[Mapping], data : dict, id : str):
-    current_id = id
-    hack = False
-    run = False
-    for mapping in mappings:
-        # Hack to only start computing mapping from new version
-        if len(data[id]) == 1:
-            starting_version = next(iter(data[id]))
-            if mapping.base_version.timestamp != starting_version:
-                #print(f"Found mapping with id {data[id][starting_version]} that only starts at version {starting_version}, but currently at base version {mapping.base_version.timestamp}")
-                hack = True
-                continue
-
-        run = True
-        new = mapping.map(current_id)
-
-        # Chain has ended, we can safely break
-        if new is None:
-            print(f"[{id}] Base module id {current_id} on version {mapping.base_version} has no related module in newer version {mapping.new_version}")
-            break
-
-        current_id = new
-        data[id][mapping.new_version.timestamp] = new
+def get_module_id(version: str, module_id: str, is_beta : bool) -> str:
+    m = hashlib.sha256()
+    m.update(f"{version}:{module_id}:{'b' if is_beta else 's'}".encode('utf-8'))
     
-    if hack and not run:
-        starting_version = next(iter(data[id]))
-        if starting_version != mappings[-1].new_version.timestamp:
-            print(f"Mapping with id {id} does not have anything to map to. Suppost to start from {starting_version}")
+    return base64.urlsafe_b64encode(m.digest()).decode('utf-8').replace("-", "z").replace("_", "Z")[:8]
+    
+TRACKER = {}
+
+class Chain:
+    def __init__(self, starting_version : str, starting_module_id : str, is_starting_beta : bool):
+        self.id = get_module_id(starting_version, starting_module_id, is_starting_beta)
+        self.chain = {}
+        self.add(starting_version, starting_module_id, is_starting_beta)
+    
+    def add(self, version : str, module_id : str, is_beta : bool):
+        self.chain[version] = module_id
+
+        id = get_module_id(version, module_id, is_beta)
+        if id in TRACKER:
+            print(self.chain)
+            print(TRACKER[id].chain)
+            print(TRACKER[id] == self)
+            raise Exception(f"Chain with id {id} already exists!")
+        
+        TRACKER[id] = self
 
 if __name__ == "__main__":
     all : dict[str, list[str]] = {}
     first_stable = stable[0]
     first_beta = beta[0]
     first_stable_data = first_stable.load()
+
+    stable_version_chain = [generate(stable[idx], stable[idx + 1]) for idx, x in enumerate(stable[:-1])]
+    beta_version_chain = [generate(first_stable, first_beta)] + [generate(beta[idx], beta[idx + 1]) for idx, x in enumerate(beta[:-1])]
+    all_version_chain = stable_version_chain + beta_version_chain
+    all_version_chain.sort(key=lambda x: x.new_version.timestamp, reverse=False)
+    chains : list[Chain] = []
+
+    last_beta = last_stable = first_stable.timestamp
+
     for x in first_stable_data.ids.keys():
-        all[x] = { first_stable.timestamp: x }
+        chains.append(Chain(first_stable.timestamp, first_stable_data.ids[x].id, False))
 
-    stable_chain = [generate(stable[idx], stable[idx + 1]) for idx, x in enumerate(stable[:-1])]
-    beta_chain = [generate(first_stable, first_beta)] + [generate(beta[idx], beta[idx + 1]) for idx, x in enumerate(beta[:-1])]
+    for mapping in all_version_chain:
+        success = 0
+        fail = 0
 
-    add_all_new_mappings(beta_chain, all)
+        for new_module in mapping.new:
+            existing_stable_chain_id = get_module_id(last_stable, new_module.dst, False)
+            existing_beta_chain_id = get_module_id(last_beta, new_module.dst, True)
 
-    for id in all:
-        add_all_existing_mappings(beta_chain, all, id)
+            if existing_beta_chain_id in TRACKER:
+                chain : Chain = TRACKER[existing_beta_chain_id]
+                chain.add(mapping.new_version.timestamp, new_module.dst, mapping.is_beta)
+            elif existing_stable_chain_id in TRACKER:
+                chain : Chain = TRACKER[existing_stable_chain_id]
+                chain.add(mapping.new_version.timestamp, new_module.dst, mapping.is_beta)
+            else:
+                chains.append(Chain(mapping.new_version.timestamp, new_module.dst, mapping.is_beta))
+                
+            success += 1
 
-    add_all_new_mappings(stable_chain, all, True)
+        for old_module_id in mapping.base_ids:
+            new_module_id = mapping.map(old_module_id)
 
-    for id in all:
-        add_all_existing_mappings(stable_chain, all, id)
+            if new_module_id is None:
+                print(f"Module {old_module_id} from {mapping.base_version.timestamp} does not exist in {mapping.new_version.timestamp}")
+                fail += 1
+                continue
+
+            existing_stable_chain_id = get_module_id(last_stable, old_module_id, False)
+            existing_beta_chain_id = get_module_id(last_beta, old_module_id, True)
+
+            if existing_beta_chain_id in TRACKER:
+                chain : Chain = TRACKER[existing_beta_chain_id]
+            elif existing_stable_chain_id in TRACKER:
+                chain : Chain = TRACKER[existing_stable_chain_id]
+            else:
+                fail += 1
+                print(f"Chain from {last_stable}|{last_beta}:{old_module_id} to {mapping.new_version.timestamp}:{new_module_id} does not exist!")
+                continue
+
+            success += 1
+            chain.add(mapping.new_version.timestamp, new_module_id, mapping.is_beta)
         
-    
+        if mapping.is_beta:
+            last_beta = mapping.new_version.timestamp
+        else:
+            last_stable = mapping.new_version.timestamp
+
+        print(f"Successfully mapped {success} modules, failed to map {fail} modules in mapping {mapping.base_version.timestamp}->{mapping.new_version.timestamp}.")
+
+    for chain in chains:
+        all[chain.id] = chain.chain
+        
     with open("./webpack_id_mappings.json", 'w') as fp:
         json.dump(all, fp)
-
-
-

@@ -12,6 +12,9 @@ for x in [Version(f) for f in os.listdir(base_path) if os.path.isfile(os.path.jo
 with open("./ignore.json", 'r') as fp:
     ignore = json.load(fp)
 
+with open("./id_to_name.json", 'r') as fp:
+    id_to_name = json.load(fp)
+
 def find_version(id : str) -> Version:
     for x in versions:
         if id == x.timestamp:
@@ -24,7 +27,8 @@ def filter_single(key : str, val : str) -> bool:
 
 class ModuleMapping:
     def __init__(self, data : dict[str, str], webpack_id : str):
-        self.webpack_id = webpack_id
+        self.id = webpack_id
+        self.webpack_id = list(data.values())[0]
         self.raw = data
         self.mappings : dict[str, dict[str, str]] = {}
         self.valid = True
@@ -87,7 +91,7 @@ class ModuleMapping:
             flattened_mappings[name] = translations
 
         return {
-            "name": None,
+            "name": id_to_name[self.id] if self.id in id_to_name else None,
             "ids": self.raw,
             "classname_mappings": flattened_mappings,
             "ignore_webpack_keys": self.ignore_webpack_name
@@ -136,7 +140,7 @@ final = {}
 versions_dict = {}
 
 for x in [z for z in modules if z.valid]:
-    final[x.webpack_id] = x.to_dict()
+    final[x.id] = x.to_dict()
 
 for x in versions:
     versions_dict[x.timestamp] = x.type
