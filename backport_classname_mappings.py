@@ -17,6 +17,17 @@ def generate(data : dict, version : int):
 
             items = sorted(module["classname_mappings"][classname_id].items(), key=lambda x: int(x[0]))
 
+            module_name = module["name"] if module["name"] is not None else f"_{module_id}"
+
+            stable_ids = [
+                f"_{module_id}_{classname_id}",
+                f"{module_name}_{classname_id}"
+            ]
+
+            for stable_id in stable_ids:
+                if stable_id not in final[key]:
+                    final[key].append(stable_id)
+
             for i, (k, v) in enumerate(items):
                 if v not in final[key] and int(k) <= version:
                     final[key].append(v)
