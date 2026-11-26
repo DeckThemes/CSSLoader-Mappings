@@ -3,10 +3,50 @@ from .webpack import Webpack, WebpackModuleMatch
 from .utils import MATCH_LIMIT
 from time import time
 
+SUBSET_MIN_SHARED_KEYS = 8
+SUBSET_MATCH_MARGIN = 0.15
+
 class MappingDiff:
     def __init__(self, base : Version, new : Version):
         self.base = base
         self.new = new
+
+    @staticmethod
+    def _match_shrunken_module(base: Webpack, new_module) -> WebpackModuleMatch | None:
+        """Match a new CSS module that retained most of an older module's exports.
+
+        Steam sometimes removes exports from a CSS module without changing the
+        remaining property names. The normal symmetric score penalizes that
+        change by dividing by the larger module, so a new module that is a
+        near-complete subset of its old version can fall below MATCH_LIMIT.
+        Only accept subset matches with at least eight shared properties and a
+        clear lead over the next candidate; otherwise leave the module unmapped.
+        """
+        new_keys = set(new_module.mapping_keys)
+        if not new_keys:
+            return None
+
+        candidates = []
+        for old_module in base.modules:
+            shared = len(new_keys.intersection(old_module.mapping_keys))
+            if shared < SUBSET_MIN_SHARED_KEYS:
+                continue
+
+            coverage = shared / len(new_keys)
+            if coverage >= MATCH_LIMIT:
+                candidates.append((old_module, coverage))
+
+        candidates.sort(key=lambda x: x[1], reverse=True)
+        if not candidates:
+            return None
+
+        if len(candidates) > 1 and candidates[0][1] - candidates[1][1] < SUBSET_MATCH_MARGIN:
+            return None
+
+        # Keep only the uniquely best candidate. Falling through to another
+        # candidate after a collision would turn an ambiguous match into a
+        # false positive.
+        return WebpackModuleMatch(new_module, candidates[:1])
     
     def process(self) -> tuple[dict[str, WebpackModuleMatch], list[WebpackModuleMatch]]:
         start = time()
@@ -26,7 +66,11 @@ class MappingDiff:
             matches = base.match(x)
 
             if len(matches.matches) <= 0:
-                new_ids.append(matches)
+                subset_match = self._match_shrunken_module(base, x)
+                if subset_match is None:
+                    new_ids.append(matches)
+                else:
+                    tracked_matches.append(subset_match)
             else:
                 tracked_matches.append(matches)
         
